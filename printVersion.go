@@ -1,5 +1,5 @@
 /*
-Package suversion gives the compiled binary a "--version" argument
+Package suGoVersion gives the compiled binary a "--version" argument
 if compiled with correct -ldflags
 (The variables must be replaced with actual variables from the build system)
 
@@ -12,7 +12,7 @@ If the user of "suversion" also use the package "flag" for its own flags, the fl
 
 There is also the possibility to call GetBuildInformation() to just get the build information without printing or exit the program.
 */
-package suversion
+package suGoVersion
 
 import (
 	"flag"

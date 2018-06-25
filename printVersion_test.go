@@ -1,13 +1,13 @@
 // Test with ldflags:
-// go test -ldflags "-X suversion.projectName=suversion -X suversion.gitCommit=gitCommit -X suversion.jenkinsBuild=jBuild01 -X suversion.buildTime=1970-01-01"
-package suversion
+// go test -ldflags "-X suGoVersion.projectName=suGoVersion -X suGoVersion.gitCommit=gitCommit -X suGoVersion.jenkinsBuild=jBuild01 -X suGoVersion.buildTime=1970-01-01"
+package suGoVersion
 
 import (
-	"os"
+	"testing"
 )
 
 var want = map[string]string{
-	"projectName":  "suversion",
+	"projectName":  "suGoVersion",
 	"gitCommit":    "gitCommit",
 	"buildTime":    "1970-01-01",
 	"jenkinsBuild": "jBuild01",
@@ -26,7 +26,7 @@ func TestPrintVersionAndExit(t *testing.T) {
 
 	osExit = myExit
 	fakeFlag = true
-    // TODO check output from PrintVersionAndExit()
+	// TODO check output from PrintVersionAndExit()
 	PrintVersionAndExit()
 	if exp := 0; got != exp {
 		t.Errorf("Expected exit code: %d, got: %d", exp, got)
