@@ -31,9 +31,11 @@ var (
 	jenkinsBuild string
 )
 
-// TODO: Fix comment
+// Make our own instance of os.Exit. This must be done so the unittest can replace osExit with an
+// function of it own. That way the test can verify the function that uses osExit.
 var osExit = os.Exit
 
+// The unittest sets fakeFlag, so that the test can run code as if it was run with "--version"
 var fakeFlag = false
 
 /*
@@ -52,7 +54,7 @@ func PrintVersionAndExit() {
 		flag.Parse()
 	}
 
-    // TODO, also iterate over leftover arguments in flag.Args() if version is there
+	// TODO, also iterate over leftover arguments in flag.Args() if version is there
 	if *arg == true || fakeFlag == true {
 		buildversion := GetBuildInformation()
 		buildSlice := []string{}
