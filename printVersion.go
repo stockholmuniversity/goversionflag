@@ -3,12 +3,12 @@ Package suGoVersion gives the compiled binary a "--version" argument
 if compiled with correct -ldflags
 (The variables must be replaced with actual variables from the build system)
 
- go build -ldflags "-X suversion.projectName=$project -X suversion.gitCommit=$commit -X suversion.buildTime=$time -X jenkinsBuild=$jenkins"
+ go build -ldflags "-X suGoVersion.projectName=$project -X suGoVersion.gitCommit=$commit -X suGoVersion.buildTime=$time -X jenkinsBuild=$jenkins"
 Primary usage of this packet should be using the function PrintVersionAndExit() which handles
 "--version" and "-version" according to GNU Coding standard 4.7.1:
 https://www.gnu.org/prep/standards/html_node/_002d_002dversion.html#g_t_002d_002dversion
 
-If the user of "suversion" also use the package "flag" for its own flags, the flags must be declared before PrintVersionAndExit() is called.
+If the user of "suGoVersion" also use the package "flag" for its own flags, the flags must be declared before PrintVersionAndExit() is called.
 
 There is also the possibility to call GetBuildInformation() to just get the build information without printing or exit the program.
 */
@@ -24,7 +24,7 @@ import (
 
 // Var that is set at compile time by the build system.
 // Build arguments:
-// go build -ldflags "-X suversion.projectName=$project -X suversion.gitCommit=$var"
+// go build -ldflags "-X suGoVersion.projectName=$project -X suGoVersion.gitCommit=$var"
 var (
 	projectName  string
 	gitCommit    string
