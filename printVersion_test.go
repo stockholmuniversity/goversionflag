@@ -37,7 +37,7 @@ func TestGetBuildInformation(t *testing.T) {
 	got := GetBuildInformation()
 
 	var key = []string{}
-	for k := range got {
+	for k := range want {
 		key = append(key, k)
 	}
 
@@ -46,4 +46,7 @@ func TestGetBuildInformation(t *testing.T) {
 			t.Error("Expected", want[k], "got ", got[k])
 		}
 	}
+    if len(got) != len(want){
+        t.Error("Number of elements differ. Expected", len(want), "got", len(got))
+    }
 }
