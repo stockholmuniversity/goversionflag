@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"os"
 	"sort"
+	"strings"
 )
 
 // Var that is set at compile time by the build system.
@@ -54,7 +55,18 @@ func PrintVersionAndExit() {
 		flag.Parse()
 	}
 
-	// TODO, also iterate over leftover arguments in flag.Args() if version is there
+	// Check remaining arguments if we got 'version'. This is needed because
+	// " Flag parsing stops just before the first non-flag argument "
+	// This way --version can come anywhere in the argument list and still honour the GNU coding standard.
+	remainingArguments := flag.Args()
+	if len(remainingArguments) > 0 {
+		for _, argument := range remainingArguments {
+			if strings.Contains(argument, "-version") {
+				*arg = true
+			}
+		}
+	}
+
 	if *arg == true || fakeFlag == true {
 		buildversion := GetBuildInformation()
 		buildSlice := []string{}
