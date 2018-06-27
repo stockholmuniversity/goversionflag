@@ -58,6 +58,7 @@ func PrintVersionAndExit() {
 	// Check remaining arguments if we got 'version'. This is needed because
 	// " Flag parsing stops just before the first non-flag argument "
 	// This way --version can come anywhere in the argument list and still honour the GNU coding standard.
+    /*
 	remainingArguments := flag.Args()
 	if len(remainingArguments) > 0 {
 		for _, argument := range remainingArguments {
@@ -66,6 +67,7 @@ func PrintVersionAndExit() {
 			}
 		}
 	}
+    */
 
 	if *arg == true || fakeFlag == true {
 		buildversion := GetBuildInformation()
