@@ -1,16 +1,15 @@
 // Test with ldflags:
-// go test -ldflags "-X suGoVersion.projectName=suGoVersion -X suGoVersion.gitCommit=gitCommit -X suGoVersion.jenkinsBuild=jBuild01 -X suGoVersion.buildTime=1970-01-01"
-package suGoVersion
+// go test -ldflags "-X github.com/stockholmuniversity/goversionflag.projectName=goversionflag -X github.com/stockholmuniversity/goversionflag.gitCommit=gitCommit -X github.com/stockholmuniversity/goversionflag.buildTime=1970-01-01"
+package goversionflag
 
 import (
 	"testing"
 )
 
 var want = map[string]string{
-	"projectName":  "suGoVersion",
+	"projectName":  "goversionflag",
 	"gitCommit":    "gitCommit",
 	"buildTime":    "1970-01-01",
-	"jenkinsBuild": "jBuild01",
 }
 var version string
 

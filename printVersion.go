@@ -1,18 +1,18 @@
 /*
-Package suGoVersion gives the compiled binary a "--version" argument
+Package goversionflag gives the compiled binary a "--version" argument
 if compiled with correct -ldflags
 (The variables must be replaced with actual variables from the build system)
 
- go build -ldflags "-X suGoVersion.projectName=$project -X suGoVersion.gitCommit=$commit -X suGoVersion.buildTime=$time -X jenkinsBuild=$jenkins"
+ go build -ldflags "-X github.com/stockholmuniversity/goversionflag.projectName=goversionflag -X github.com/stockholmuniversity/goversionflag.gitCommit=gitCommit -X github.com/stockholmuniversity/goversionflag.buildTime=1970-01-01"
 Primary usage of this packet should be using the function PrintVersionAndExit() which handles
 "--version" and "-version" according to GNU Coding standard 4.7.1:
 https://www.gnu.org/prep/standards/html_node/_002d_002dversion.html#g_t_002d_002dversion
 
-If the user of "suGoVersion" also use the package "flag" for its own flags, the flags must be declared before PrintVersionAndExit() is called.
+If the user of "goversionflag" also use the package "flag" for its own flags, the flags must be declared before PrintVersionAndExit() is called.
 
 There is also the possibility to call GetBuildInformation() to just get the build information without printing or exit the program.
 */
-package suGoVersion
+package goversionflag
 
 import (
 	"flag"
@@ -23,12 +23,11 @@ import (
 
 // Var that is set at compile time by the build system.
 // Build arguments:
-// go build -ldflags "-X suGoVersion.projectName=$project -X suGoVersion.gitCommit=$var"
+// go build -ldflags "-X goversionflag.projectName=$project -X goversionflag.gitCommit=$var -X goversion.buildTime=$timestamp"
 var (
 	projectName  string
 	gitCommit    string
 	buildTime    string
-	jenkinsBuild string
 )
 
 // Make our own instance of os.Exit. This must be done so the unittest can replace osExit with an
@@ -69,7 +68,7 @@ func PrintVersionAndExit() {
 	}
 }
 
-// GetBuildInformation returns a map with build information from Jenkins at compile time.
+// GetBuildInformation returns a map with build information from ci build pipe at compile time.
 //
 // In most cases you should not use this function but instead PrintVersionAndExit().
 // This function assume that the main program implements its own variation of PrintVersionAndExit()
@@ -78,7 +77,6 @@ func GetBuildInformation() (buildversion map[string]string) {
 		"projectName":  projectName,
 		"gitCommit":    gitCommit,
 		"buildTime":    buildTime,
-		"jenkinsBuild": jenkinsBuild,
 	}
 	return buildversion
 }
