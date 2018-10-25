@@ -60,12 +60,21 @@ func PrintVersionAndExit() {
 	if *arg == true || fakeFlag == true {
 		buildversion := GetBuildInformation()
 		buildSlice := []string{}
+		missingBuildInfo := false
 		for k, v := range buildversion {
 			buildSlice = append(buildSlice, k+": "+v)
+			if v == "" {
+				missingBuildInfo = true
+			}
 		}
 		sort.Strings(buildSlice)
 		for _, v := range buildSlice {
 			fmt.Println(v)
+		}
+		if missingBuildInfo {
+			fmt.Println("Do not have complete buildinfo, see documentaion:")
+			fmt.Println("\thttps://github.com/stockholmuniversity/goversionflag")
+			fmt.Println("\thttps://godoc.org/github.com/stockholmuniversity/goversionflag")
 		}
 
 		osExit(0)
