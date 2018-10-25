@@ -7,9 +7,9 @@ import (
 )
 
 var want = map[string]string{
-	"projectName":  "goversionflag",
-	"gitCommit":    "gitCommit",
-	"buildTime":    "1970-01-01",
+	"projectName": "goversionflag",
+	"gitCommit":   "gitCommit",
+	"buildTime":   "1970-01-01",
 }
 var version string
 

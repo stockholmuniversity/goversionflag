@@ -23,11 +23,15 @@ import (
 
 // Var that is set at compile time by the build system.
 // Build arguments:
-// go build -ldflags "-X goversionflag.projectName=$project -X goversionflag.gitCommit=$var -X goversion.buildTime=$timestamp"
+/* go build -ldflags "\
+   -X github.com/stockholmuniversity/goversionflag.projectName=${PROJECT} \
+   -X github.com/stockholmuniversity/goversionflag.gitCommit=${GIT_COMMIT} \
+   -X github.com/stockholmuniversity/goversionflag.buildTime=${TIMESTAMP}"
+*/
 var (
-	projectName  string
-	gitCommit    string
-	buildTime    string
+	projectName string
+	gitCommit   string
+	buildTime   string
 )
 
 // Make our own instance of os.Exit. This must be done so the unittest can replace osExit with an
@@ -74,9 +78,9 @@ func PrintVersionAndExit() {
 // This function assume that the main program implements its own variation of PrintVersionAndExit()
 func GetBuildInformation() (buildversion map[string]string) {
 	buildversion = map[string]string{
-		"projectName":  projectName,
-		"gitCommit":    gitCommit,
-		"buildTime":    buildTime,
+		"projectName": projectName,
+		"gitCommit":   gitCommit,
+		"buildTime":   buildTime,
 	}
 	return buildversion
 }
