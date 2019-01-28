@@ -83,8 +83,9 @@ func PrintVersionAndExit() {
 
 // GetBuildInformation returns a map with build information from ci build pipe at compile time.
 //
-// In most cases you should not use this function but instead PrintVersionAndExit().
-// This function assume that the main program implements its own variation of PrintVersionAndExit()
+// This function is useful for exemple letting an http API have an endpoint with version information.
+//
+// In the cases print version and exit on your binary you should use PrintVersionAndExit() instead.
 func GetBuildInformation() (buildversion map[string]string) {
 	buildversion = map[string]string{
 		"projectName": projectName,
