@@ -28,4 +28,4 @@ When building your program with goversionflag you must add buildflags in the bui
 go build -ldflags "-X github.com/stockholmuniversity/goversionflag.projectName=$project -X github.com/stockholmuniversity/goversionflag.gitCommit=$commit -X github.com/stockholmuniversity/goversionflag.buildTime=$time"
 ```
 For more information see documentation and comments in printVersion.go
-
+and godoc: https://godoc.org/github.com/stockholmuniversity/goversionflag
