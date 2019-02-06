@@ -4,6 +4,13 @@ if compiled with correct -ldflags
 (The variables must be replaced with actual variables from the build system)
 
  go build -ldflags "-X github.com/stockholmuniversity/goversionflag.projectName=goversionflag -X github.com/stockholmuniversity/goversionflag.gitCommit=gitCommit -X github.com/stockholmuniversity/goversionflag.buildTime=1970-01-01"
+
+If you are using a vendoring system, for example [dep](https://github.com/golang/dep) that puts all dependency's in an vendoring directory
+you must use the full path name relative to $GOPATH as described in [issue](https://github.com/golang/go/issues/19000#issuecomment-278498915)
+
+ go build -ldflags "-X ${MYPROJECT}/vendor/github.com/stockholmuniversity/goversionflag.projectName=$project -X ${MYPROJECT}/vendor/github.com/stockholmuniversity/goversionflag.gitCommit=$commit -X ${MYPROJECT}/vendor/github.com/stockholmuniversity/goversionflag.buildTime=$time"
+
+
 Primary usage of this packet should be using the function PrintVersionAndExit() which handles
 "--version" and "-version" according to GNU Coding standard 4.7.1:
 https://www.gnu.org/prep/standards/html_node/_002d_002dversion.html#g_t_002d_002dversion

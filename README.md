@@ -27,5 +27,12 @@ When building your program with goversionflag you must add buildflags in the bui
 ```
 go build -ldflags "-X github.com/stockholmuniversity/goversionflag.projectName=$project -X github.com/stockholmuniversity/goversionflag.gitCommit=$commit -X github.com/stockholmuniversity/goversionflag.buildTime=$time"
 ```
+If you are using a vendoring system, for example [dep](https://github.com/golang/dep) that puts all dependency's in an vendoring directory
+you must use the full path name relative to $GOPATH as described in [issue](https://github.com/golang/go/issues/19000#issuecomment-278498915)
+```
+go build -ldflags "-X ${MYPROJECT}/vendor/github.com/stockholmuniversity/goversionflag.projectName=$project -X ${MYPROJECT}/vendor/github.com/stockholmuniversity/goversionflag.gitCommit=$commit -X ${MYPROJECT}/vendor/github.com/stockholmuniversity/goversionflag.buildTime=$time"
+```
+
+
 For more information see documentation and comments in printVersion.go
 and godoc: https://godoc.org/github.com/stockholmuniversity/goversionflag
